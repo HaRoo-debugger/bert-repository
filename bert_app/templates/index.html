@@ -1,0 +1,202 @@
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estrella Portfolio</title>
+  <link rel="stylesheet" href="{% static 'css/stylee.css' %}" alt = "profile picture">
+</head>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      toggle.classList.toggle('active');
+    });
+
+    // Optional: close menu when clicking a link (on mobile)
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        toggle.classList.remove('active');
+      });
+    });
+  });
+</script>
+
+<body>
+
+  <header class="header">
+    <div class="header-content">
+
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav">
+      <a href="home" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'}); return false;">Home</a>
+      <a href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'}); return false;">About</a>
+      <a href="#skills" onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'}); return false;">Skills</a>
+      <a href="#projects" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'}); return false;">Projects</a>
+      <a href="#education" onclick="document.getElementById('education').scrollIntoView({behavior:'smooth'}); return false;">Education</a>
+      <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Contact</a>
+    </nav>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <section id="home" class="section home">
+    <div class="container">
+      <h1>{{ profile.name }}</h1>
+      <p class="tagline">{{ profile.tagline }}</p>
+      <img src="{{ profile.profile_image.url }}" class="profile-img">
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="about-img">
+        <div class="about-box ">
+          <h2>About Me</h2>
+          <p>{{ about.content }}</p>
+        </div>
+      </div>  
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section skills">
+    <div class="container">
+      <div class="skills-img">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        {% for skill in skills %}
+        <li class="skill-item">
+
+          {% if skill.name == "HTML" %}
+            <img src="{% static 'images/html.png' %}">
+          {% elif skill.name == "CSS" %}
+            <img src="{% static 'images/css.png' %}">
+          {% elif skill.name == "JavaScript" %}
+            <img src="{% static 'images/js.png' %}">
+          {% elif skill.name == "PHP" %}
+            <img src="{% static 'images/php.png' %}">
+          {% elif skill.name == "Django" %}
+            <img src="{% static 'images/django.png' %}">
+          {% elif skill.name == "Python" %}
+            <img src="{% static 'images/python.png' %}">
+          {% endif %}
+
+          <span>{{ skill.name }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section projects">
+  <div class="container">
+    <h2>Projects</h2>
+
+    <div class="project-card">
+
+      <div class="project-content">
+        <h3>Barangay Information Record and Management System</h3>
+        <p>
+          A web-based platform designed to efficiently collect, store, and manage residents’ information within a barangay. It allows barangay officials to access records online, streamline administrative tasks, and improve overall community management and service delivery.
+        </p>
+        <p><strong>Tools:</strong> HTML, PHP, CSS, JavaScript</p>
+      </div>
+
+      <div class="project-image">
+        <img src="../static/images/system.jpg" alt="System Preview">
+      </div>
+
+    </div>
+  </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <!-- EDUCATION -->
+<section id="education" class="section education">
+  <div class="container">
+    <h2>Education</h2>
+
+    <div class="education-cards">
+      {% for edu in education %}
+        <div class="education-card">
+          <div class="card-image">
+              <!-- Placeholder or icon (you can replace with real images later) -->
+              <div class="placeholder-icon">🎓</div>
+          </div>
+
+          <div class="card-content">
+            <h3 class="card-title">{{ edu.school }}</h3>
+            <p class="card-course">{{ edu.course }}</p>
+            <div class="card-meta">
+              <span class="card-year">{{ edu.year }}</span>
+              <!-- Optional: add a badge or "completed" style -->
+              <span class="card-badge">Completed</span>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p style="text-align: center; color: #888;">No education entries added yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section contact">
+  <div class="container">
+
+    <h2>Contact Me</h2>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert" style="color: #0f0; background: #1a3c1a; padding: 1rem; margin: 1rem auto; max-width: 700px; border-radius: 4px;">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="contact-form-wrapper">
+      <form method="post" class="contact-form">
+        {% csrf_token %}
+        <div class="form-group">{{ form.name }}</div>
+        <div class="form-group">{{ form.email }}</div>
+        <div class="form-group">{{ form.subject }}</div>
+        <div class="form-group">{{ form.message }}</div>
+        <button type="submit" class="submit-btn">SEND MESSAGE</button>
+      </form>
+    </div>
+
+    <div class="contact-info-wrapper">
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <p><strong>Email:</strong> {{ contact.email }}</p>
+        <p><strong>Phone:</strong> {{ contact.phone }}</p>
+        <p><strong>Facebook:</strong> 
+          <a href="{{ contact.facebook }}" target="_blank" el="noopener noreferrer">
+            {{ contact.facebook }}</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <footer class="footer">
+    <p>© 2026 Bert Nichole Estrella. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
