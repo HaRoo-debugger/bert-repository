@@ -52,8 +52,11 @@
   <!-- HOME -->
   <section id="home" class="section home">
     <div class="container">
-      <h1>{{ profile.name }}</h1>
-      <p class="tagline">{{ profile.tagline }}</p>
+      <div class="text-content">
+        <h1>{{ profile.name }}</h1>
+        <p class="tagline">{{ profile.tagline }}</p>
+      </div>
+
       <img src="{{ profile.profile_image.url }}" class="profile-img">
     </div>
   </section>
@@ -131,26 +134,37 @@
     <h2>Education</h2>
 
     <div class="education-cards">
+
       {% for edu in education %}
         <div class="education-card">
-          <div class="card-image">
-              <!-- Placeholder or icon (you can replace with real images later) -->
-              <div class="placeholder-icon">🎓</div>
-          </div>
-
+          <div class="placeholder-icon">🎓</div>
+          
           <div class="card-content">
             <h3 class="card-title">{{ edu.school }}</h3>
             <p class="card-course">{{ edu.course }}</p>
             <div class="card-meta">
               <span class="card-year">{{ edu.year }}</span>
-              <!-- Optional: add a badge or "completed" style -->
-              <span class="card-badge">Completed</span>
+              {% if edu.completed %}
+                <span class="card-badge">Completed</span>
+              {% endif %}
             </div>
           </div>
         </div>
-      {% empty %}
-        <p style="text-align: center; color: #888;">No education entries added yet.</p>
       {% endfor %}
+
+      <!-- Example: Basay National High School (same design) -->
+      <div class="education-card">
+        <div class="placeholder-icon">🎓</div>
+        
+        <div class="card-content">
+          <h3 class="card-title">Basay National High School (Senior High)</h3>
+          <p class="card-course">Computer Software Servicing</p>
+          <div class="card-meta">
+            <span class="card-year">2021 - 2023</span>
+            <span class="card-badge">Completed</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -158,7 +172,6 @@
 <!-- CONTACT -->
 <section id="contact" class="section contact">
   <div class="container">
-
     <h2>Contact Me</h2>
 
     {% if messages %}
@@ -169,28 +182,33 @@
       {% endfor %}
     {% endif %}
 
-    <div class="contact-form-wrapper">
-      <form method="post" class="contact-form">
-        {% csrf_token %}
-        <div class="form-group">{{ form.name }}</div>
-        <div class="form-group">{{ form.email }}</div>
-        <div class="form-group">{{ form.subject }}</div>
-        <div class="form-group">{{ form.message }}</div>
-        <button type="submit" class="submit-btn">SEND MESSAGE</button>
-      </form>
-    </div>
+        <div class="contact-container">
 
-    <div class="contact-info-wrapper">
-      <div class="contact-info">
-        <h3>Get in Touch</h3>
-        <p><strong>Email:</strong> {{ contact.email }}</p>
-        <p><strong>Phone:</strong> {{ contact.phone }}</p>
-        <p><strong>Facebook:</strong> 
-          <a href="{{ contact.facebook }}" target="_blank" el="noopener noreferrer">
-            {{ contact.facebook }}</a></p>
+      <div class="contact-form-wrapper">
+        <form method="post" class="contact-form">
+          {% csrf_token %}
+          <div class="form-group">{{ form.name }}</div>
+          <div class="form-group">{{ form.email }}</div>
+          <div class="form-group">{{ form.subject }}</div>
+          <div class="form-group">{{ form.message }}</div>
+          <button type="submit" class="submit-btn">SEND MESSAGE</button>
+        </form>
       </div>
-    </div>
 
+      <div class="contact-info-wrapper">
+        <div class="contact-info">
+          <h3>Get in Touch</h3>
+          <p><strong>Email:</strong> {{ contact.email }}</p>
+          <p><strong>Phone:</strong> {{ contact.phone }}</p>
+          <p><strong>Facebook:</strong> 
+            <a href="{{ contact.facebook }}" target="_blank" rel="noopener noreferrer">
+              {{ contact.facebook }}
+            </a>
+          </p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 

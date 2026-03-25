@@ -195,6 +195,13 @@ h1, h2, h3 {
     var(--navy);
 }
 
+.text-content {
+  display: flex;
+  flex-direction: column; /* Stack name on top, tagline on bottom */
+  justify-content: center;
+  text-align: left; /* Keeps text aligned to the left side */
+}
+
 .home .container {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -389,6 +396,7 @@ h1, h2, h3 {
 /* ==========================================================
    EDUCATION SECTION
    ========================================================== */
+
 .education {
   background: var(--navy);
 }
@@ -397,8 +405,10 @@ h1, h2, h3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
+  margin-top: 40px;   /* added nice spacing from title */
 }
 
+/* ===================== SINGLE CARD ===================== */
 .education-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -408,6 +418,7 @@ h1, h2, h3 {
   gap: 20px;
   align-items: flex-start;
   transition: var(--transition);
+  height: 100%;                    /* makes all cards same height */
 }
 
 .education-card:hover {
@@ -416,41 +427,52 @@ h1, h2, h3 {
   box-shadow: 0 12px 40px rgba(26,140,255,0.15);
 }
 
+/* Icon */
 .placeholder-icon {
-  font-size: 2rem;
+  font-size: 2.2rem;
   line-height: 1;
   background: rgba(26,140,255,0.1);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  width: 56px;
-  height: 56px;
+  border-radius: 12px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: var(--blue);
+}
+
+/* Content Area */
+.card-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .card-title {
   font-size: 1.05rem;
   color: var(--white);
-  margin-bottom: 6px;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
 }
 
 .card-course {
   font-size: 0.9rem;
   color: var(--muted);
   margin-bottom: 14px;
+  line-height: 1.4;
 }
 
 .card-meta {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .card-year {
   font-family: var(--font-head);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--blue);
   font-weight: 700;
 }
@@ -463,8 +485,150 @@ h1, h2, h3 {
   background: rgba(26,140,255,0.12);
   color: var(--blue);
   border: 1px solid rgba(26,140,255,0.3);
-  padding: 2px 10px;
+  padding: 4px 10px;
   border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Content Area */
+.card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  color: var(--white);
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.card-course {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.card-year {
+  font-family: var(--font-head);
+  font-size: 0.82rem;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.card-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(26,140,255,0.12);
+  color: var(--blue);
+  border: 1px solid rgba(26,140,255,0.3);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Content Area */
+.card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  color: var(--white);
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.card-course {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.card-year {
+  font-family: var(--font-head);
+  font-size: 0.82rem;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.card-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(26,140,255,0.12);
+  color: var(--blue);
+  border: 1px solid rgba(26,140,255,0.3);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Content Area */
+.card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  color: var(--white);
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.card-course {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.card-year {
+  font-family: var(--font-head);
+  font-size: 0.82rem;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.card-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(26,140,255,0.12);
+  color: var(--blue);
+  border: 1px solid rgba(26,140,255,0.3);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 /* ==========================================================
@@ -474,9 +638,19 @@ h1, h2, h3 {
   background: var(--navy-mid);
 }
 
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* Form | Info */
+  gap: 60px;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 0 20px;
+}
+
+/* FORM - Left Side */
 .contact-form-wrapper {
-  max-width: 700px;
-  margin: 0 auto 48px;
+  max-width: 100% !important;
+  margin: 0 !important;
 }
 
 .contact-form {
@@ -487,8 +661,40 @@ h1, h2, h3 {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  height: 100%;
 }
 
+/* INFO - Right Side */
+.contact-info-wrapper {
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.contact-info {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 48px;
+  height: 100%;
+}
+
+.contact-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: var(--blue);
+}
+
+.contact-info p {
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.contact-info strong {
+  color: var(--white);
+}
+
+/* Form Fields */
 .form-group input,
 .form-group textarea,
 .form-group select {
@@ -542,33 +748,12 @@ h1, h2, h3 {
   transform: translateY(-2px);
 }
 
-/* CONTACT INFO */
-.contact-info-wrapper {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.contact-info {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 36px 48px;
-}
-
-.contact-info h3 {
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-  color: var(--blue);
-}
-
-.contact-info p {
-  color: var(--muted);
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-}
-
-.contact-info strong {
-  color: var(--white);
+/* Stack on smaller screens */
+@media (max-width: 992px) {
+  .contact-container {
+    grid-template-columns: 1fr;   /* Form on top, Info below */
+    gap: 40px;
+  }
 }
 
 /* ==========================================================
